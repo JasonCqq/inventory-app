@@ -9,6 +9,16 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+//MONGODB DATABASE CONNECTION
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+const mongoDB =
+  "mongodb://jasoncqhuang:WI62VpVxRtiVnk5a@ac-rpnjmlj-shard-00-00.ld1s5vi.mongodb.net:27017,ac-rpnjmlj-shard-00-01.ld1s5vi.mongodb.net:27017,ac-rpnjmlj-shard-00-02.ld1s5vi.mongodb.net:27017/?ssl=true&replicaSet=atlas-hb7y3u-shard-0&authSource=admin&retryWrites=true&w=majority";
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
