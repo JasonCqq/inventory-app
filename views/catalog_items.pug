@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  p create item in /catalog/item/create
+
   if categories_list
     h1 All Categories
     ul
@@ -22,6 +24,10 @@ block content
           span(style="color: green") In Stock
         else if item.quantity===0
           span(style="color: red") Out of Stock
+        |
+        form(action=`/catalog/item/delete/${item._id}` method="post")
+          button(type="submit" style="background-color: red") Delete
 
-        | - Update
-        | - Delete
+        form(action=`/catalog/item/update/${item._id}` method="post")
+          label(for="update") Update Quantity
+          input(id="update" name="update" required='true')

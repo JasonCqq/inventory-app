@@ -61,3 +61,15 @@ exports.create_item_post = [
     }
   }),
 ];
+
+exports.delete_item = asyncHandler(async (req, res) => {
+  await Item.deleteOne({ _id: req.params.id });
+  res.redirect("/catalog/all");
+});
+
+exports.update_item = asyncHandler(async (req, res) => {
+  await Item.findByIdAndUpdate(req.params.id, {
+    $set: { quantity: req.body.update },
+  });
+  res.redirect("/catalog/all");
+});
