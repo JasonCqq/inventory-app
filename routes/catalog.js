@@ -12,7 +12,9 @@ router.get("/all", catalog_controller.items_list);
 
 router.get("/:id", catalog_controller.category_list);
 
-router.get("/item/create", item_controller.create_item);
+router.get("/item/create", item_controller.create_item_get);
+
+router.post("/item/create", item_controller.create_item_post);
 
 router.get("/item/:id", item_controller.item_detail);
 
