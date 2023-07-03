@@ -1,4 +1,31 @@
 extend layout 
 
 block content
-    h1 HEY
+    h1 Add an Item 
+    
+    form(action="", method="POST")
+        label(for="name") Item Name:
+        input(id="name", type="text", name="name")
+
+        br
+
+        label(for="price") Item Price:
+        input(id="price", type="number", name="price")
+
+        br
+
+        label(for="quantity") Quantity:
+        input(id="quantity" type="number", name="quantity")
+
+        br
+
+        label(for="category") Item Category:
+        select(id="category" name="category")
+            option(value="cpu") CPU Processors
+            option(value="case") Computer Cases
+            option(value="gpu") Graphics Cards
+            option(value="ram") Memory (RAM)
+            option(value="mb") Motherboards
+            option(value="cooler") PC Coolers
+            option(value="psu") Power Supplies
+            option(value="storage") Storage

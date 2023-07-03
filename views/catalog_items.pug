@@ -1,9 +1,24 @@
 extends layout
 
 block content
-  h1= `${title}` 
-
+  if categories_list
+    h1 All Categories
+    ul
+      each cat in categories_list 
+        li
+          a(href=`/catalog/${cat._id}`) #{cat.name}
+  
+  h1=`${title}`
+  if category!=='All'
+    p #{category.description} 
   ul
     each item in item_list 
       li
         a(href=`/catalog/item/${item._id}`) #{item.name}
+        | - $#{item.price}
+        | - #{item.quantity} in inventory - 
+
+        if item.quantity>0
+          span(style="color: green") In Stock
+        else if item.quantity===0
+          span(style="color: red") Out of Stock

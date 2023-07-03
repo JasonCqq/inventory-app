@@ -3,9 +3,17 @@ const Category = require("../models/category");
 const Item = require("../models/item");
 
 exports.items_list = asyncHandler(async (req, res) => {
-  const allItems = await Item.find().sort({ name: 1 }).exec();
+  const [allCategories, allItems] = await Promise.all([
+    Category.find().sort({ name: 1 }).exec(),
+    Item.find().sort({ name: 1 }).exec(),
+  ]);
 
-  res.render("catalog_items", { title: "All Items", item_list: allItems });
+  res.render("catalog_items", {
+    title: "All Items",
+    item_list: allItems,
+    category: "All",
+    categories_list: allCategories,
+  });
 });
 
 exports.category_list = asyncHandler(async (req, res, next) => {
